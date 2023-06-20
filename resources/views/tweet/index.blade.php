@@ -30,10 +30,15 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @foreach($tweets as $tweet)
-                        <p>{{ 'タイトル：' }}{{ $tweet -> title }}</p><br>
-                        <p>{{ '問題：' }}{{ $tweet -> problem }}</p><br>
-                        <p>{{ '解決法：' }}{{ $tweet -> solution }}</p><br>
-                        <br>
+                        <details>
+                            <summary>{{ $tweet->title }}</summary>
+                                <p>{{ 'タイトル：' }}{{ $tweet -> title }}</p><br>
+                                <p>{{ '問題：' }}{{ $tweet -> problem }}</p><br>
+                                <p>{{ '解決法：' }}{{ $tweet -> solution }}</p><br>
+                                <div>
+                                    <a href="{{ route('tweet.update.index', ['tweetId'=>$tweet->id]) }}">編集</a>
+                                </div>
+                        </details>
                     @endforeach
                 </div>
             </div>

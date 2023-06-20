@@ -23,7 +23,7 @@ class IndexController extends Controller
         //     ->with('version', '8');
 
         // 第二弾として以下を追加
-        $tweets = Tweet::all();
+        $tweets = Tweet::orderBy('created_at', 'DESC')->get();
         // dd($tweets);
         //Tweetモデルからtweetsテーブルのデータを全て取り出して$tweetsにいれる
         //dd(変数)はver_dumpみたいなもん。

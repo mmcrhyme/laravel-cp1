@@ -6,6 +6,7 @@
         </h2>
     </x-slot>
 
+    @auth
     <div>
         <p>投稿フォーム</p>
         @if (session('feedback.success'))
@@ -24,6 +25,7 @@
             <button type="submit">投稿</button>
         </form>
     </div>
+    @endauth
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -31,10 +33,11 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @foreach($tweets as $tweet)
                         <details>
-                            <summary>{{ $tweet->title }}</summary>
+                            <summary>{{ $tweet->title }} by {{ $tweet->user_name }}</summary>
                                 <p>{{ 'タイトル：' }}{{ $tweet -> title }}</p><br>
                                 <p>{{ '問題：' }}{{ $tweet -> problem }}</p><br>
                                 <p>{{ '解決法：' }}{{ $tweet -> solution }}</p><br>
+                            @if (\Illuminate\Support\Facades\Auth::id() === $tweet->user_id)
                                 <div>
                                     <a href="{{ route('tweet.update.index', ['tweetId'=>$tweet->id]) }}">編集</a>
                                 </div>
@@ -43,6 +46,9 @@
                                     @csrf
                                     <button type="submit">削除</button>
                                 </form>
+                            @else
+                                編集できません
+                            @endif
                         </details>
                     @endforeach
                 </div>

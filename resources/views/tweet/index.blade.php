@@ -6,6 +6,25 @@
         </h2>
     </x-slot>
 
+    <div>
+        <p>投稿フォーム</p>
+        {{-- @if (session('feedback.success'))
+            <p style="color:green;">{{ session('feedback.success') }}</p>
+        @endif --}}
+        <form action="{{ route('tweet.create') }}" method="post">
+            @csrf
+            <label for="tweet_content">つぶやき</label>
+            <span>140文字まで</span>
+            <input type="text" name="title" id="tweet_title" placeholder="タイトルを入力">
+            <textarea type="text" name="problem" id="tweet_problem" placeholder="問題を入力" cols="30" rows="10"></textarea>
+            <textarea type="text" name="solution" id="tweet_solution" placeholder="解決法を入力" cols="30" rows="10"></textarea>
+            @error('problem','solution')
+                <p style="color: red;">{{ $message }}</p>
+            @enderror
+            <button type="submit">投稿</button>
+        </form>
+    </div>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">

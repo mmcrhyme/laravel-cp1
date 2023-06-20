@@ -8,9 +8,9 @@
 
     <div>
         <p>投稿フォーム</p>
-        {{-- @if (session('feedback.success'))
+        @if (session('feedback.success'))
             <p style="color:green;">{{ session('feedback.success') }}</p>
-        @endif --}}
+        @endif
         <form action="{{ route('tweet.create') }}" method="post">
             @csrf
             <label for="tweet_content">つぶやき</label>
@@ -38,6 +38,11 @@
                                 <div>
                                     <a href="{{ route('tweet.update.index', ['tweetId'=>$tweet->id]) }}">編集</a>
                                 </div>
+                                <form action="{{ route('tweet.delete', ['tweetId'=>$tweet->id]) }}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit">削除</button>
+                                </form>
                         </details>
                     @endforeach
                 </div>

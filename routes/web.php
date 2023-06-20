@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/tweet', \App\Http\Controllers\Tweet\IndexController::class);
+Route::get('/tweet', \App\Http\Controllers\Tweet\IndexController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -18,11 +18,16 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            // sail artisan db:seed --class=〇〇sSeeder で一部テーブルのダミーデータのみ作成可能
+            'name' => $this->faker->name(),
+            'email'=> $this->faker->email(),
+            'password'=>$this->faker->password($minLength = 6, $maxLength = 20),
+            'created_at' => now(),
+            'updated_at' => now(),
+            'user_id'=>$this->faker->userName(15),
+            'fname' => Str::random(25),
+            'bio' => $this->faker->realText(100),
+            'admin' => $this->faker->numberBetween(0,1),
         ];
     }
 

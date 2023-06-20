@@ -18,5 +18,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        // usersテーブルのダミーデータを作成
+        $this->call([UsersSeeder::class]);
+        // tweetsテーブルのダミーデータを作成
+        $this->call([TweetsSeeder::class]);
     }
 }

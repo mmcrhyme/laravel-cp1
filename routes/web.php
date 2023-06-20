@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/tweet', \App\Http\Controllers\Tweet\IndexController::class)->name('tweet.index');
 
-Route::get('/tweet/create', \App\Http\Controllers\Tweet\CreateController::class)->name('tweet.create');
+Route::post('/tweet/create', \App\Http\Controllers\Tweet\CreateController::class)->name('tweet.create');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

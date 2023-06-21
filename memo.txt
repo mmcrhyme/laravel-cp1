@@ -8,3 +8,4 @@ Dockerの中のコンテナにアクセスして、ファイルがあるかど�
     docker compose exec コンテナ名（docker-compose.ymlファイルの中のserviceの下のやつ） bash
     cd ディレクトリ
     ls-laで確認
+    

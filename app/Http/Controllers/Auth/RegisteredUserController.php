@@ -48,7 +48,7 @@ class RegisteredUserController extends Controller
             'admin' => $request->admin,
         ]);
 
-        // Logで$requestに入ってきている値を見る。logはstorage/logs/laravel.logにある。
+        // Logで$requestに入ってきている値を見る。logはstorage/logs/laravel.logにある
             // Log::debug($request);
             // Log::info($request);
             // Log::error($request); 

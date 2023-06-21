@@ -5,8 +5,8 @@
             {{ __('つぶやきアプリ') }}
         </h2>
         <button type="button" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" data-hs-overlay="#hs-vertically-centered-modal">
-  Vertically centered modal
-</button>
+            投稿フォーム
+        </button>
 
 <div id="hs-vertically-centered-modal" class="hs-overlay hidden w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto">
   <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
@@ -23,9 +23,18 @@
         </button>
       </div>
       <div class="p-4 overflow-y-auto">
-        <p class="text-gray-800 dark:text-gray-400">
-          This is a wider card with supporting text below as a natural lead-in to additional content.
-        </p>
+        <form action="{{ route('tweet.create') }}" method="post">
+            @csrf
+            <label for="tweet_content">つぶやき</label>
+            <span>140文字まで</span>
+            <input type="text" name="title" id="tweet_title" placeholder="タイトルを入力">
+            <textarea type="text" name="problem" id="tweet_problem" placeholder="問題を入力" cols="30" rows="10"></textarea>
+            <textarea type="text" name="solution" id="tweet_solution" placeholder="解決法を入力" cols="30" rows="10"></textarea>
+            @error('problem','solution')
+                <p style="color: red;">{{ $message }}</p>
+            @enderror
+            <button type="submit">投稿</button>
+        </form>
       </div>
       <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-gray-700">
         <button type="button" class="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" data-hs-overlay="#hs-vertically-centered-modal">
@@ -42,22 +51,9 @@
 
     @auth
     <div>
-        <p>投稿フォーム</p>
         @if (session('feedback.success'))
             <p style="color:green;">{{ session('feedback.success') }}</p>
         @endif
-        <form action="{{ route('tweet.create') }}" method="post">
-            @csrf
-            <label for="tweet_content">つぶやき</label>
-            <span>140文字まで</span>
-            <input type="text" name="title" id="tweet_title" placeholder="タイトルを入力">
-            <textarea type="text" name="problem" id="tweet_problem" placeholder="問題を入力" cols="30" rows="10"></textarea>
-            <textarea type="text" name="solution" id="tweet_solution" placeholder="解決法を入力" cols="30" rows="10"></textarea>
-            @error('problem','solution')
-                <p style="color: red;">{{ $message }}</p>
-            @enderror
-            <button type="submit">投稿</button>
-        </form>
     </div>
     @endauth
 

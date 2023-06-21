@@ -20,6 +20,6 @@ export default {
 
     plugins: [
         forms,
-        'node_modules/preline/dist/*.js',
+        require('preline/plugin'),
     ],
 };

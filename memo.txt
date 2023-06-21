@@ -9,3 +9,5 @@ Dockerの中のコンテナにアクセスして、ファイルがあるかど�
     cd ディレクトリ
     ls-laで確認
     
+prelineを実行
+    npm run devをしたまま

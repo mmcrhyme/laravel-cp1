@@ -35,7 +35,7 @@
             <div class="max-w-7xl mx-auto p-6 lg:p-8">
                 <div class="flex justify-center items-center">
                     <div class="logo">
-                        <img class="w-20 mx-1" src="{{ asset('storage/images/logo1.jpeg')}}" alt="Flourimist">
+                        <img class="w-20 mx-1" src="{{ asset('images/logo1.jpeg')}}" alt="Flourimist">
                     </div>
                     <div class="text-5xl text-white mx-1">
                         Flourimist

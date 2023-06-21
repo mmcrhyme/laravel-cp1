@@ -1,0 +1,10 @@
+Linux側でシンボリックリンクの作り方
+cd リンクを置きたいディレクトリに移動
+ln -s ../storage/images .
+ln -s 今あるとこからシンボリックリンクを作成したいディレクトリのパス .（今のディレクトリに作るよ）
+
+
+Dockerの中のコンテナにアクセスして、ファイルがあるかどうか確認する方法
+    docker compose exec コンテナ名（docker-compose.ymlファイルの中のserviceの下のやつ） bash
+    cd ディレクトリ
+    ls-laで確認

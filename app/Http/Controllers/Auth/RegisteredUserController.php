@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Log;
 
 class RegisteredUserController extends Controller
 {
@@ -47,10 +48,14 @@ class RegisteredUserController extends Controller
             'admin' => $request->admin,
         ]);
 
+        // Logで$requestに入ってきている値を見る。logはstorage/logs/laravel.logにある
+            // Log::debug($request);
+            // Log::info($request);
+            // Log::error($request); 
+
         if ($request->hasFile('fname')) {
             $file = $request->file('fname');
             $fileName = $file->getClientOriginalName(); // オリジナルのファイル名を取得する
-    
             // アップロードされたファイルを指定のディレクトリに保存する
             $file->move('../storage/images', $fileName);
     

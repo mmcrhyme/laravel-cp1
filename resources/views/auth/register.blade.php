@@ -12,7 +12,7 @@
             @endauth
         </div>
     @endif
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
          <!-- Name -->

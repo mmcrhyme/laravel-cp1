@@ -67,11 +67,12 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @foreach($tweets as $tweet)
-                        <details>
-                            <summary>{{ $tweet->title }} by {{ $tweet->user_name }}</summary>
-                                <p>{{ 'タイトル：' }}{{ $tweet -> title }}</p><br>
-                                <p>{{ '問題：' }}{{ $tweet -> problem }}</p><br>
-                                <p>{{ '解決法：' }}{{ $tweet -> solution }}</p><br>
+                            <x-collection>
+                                <details>
+                                    <summary>{{ 'タイトル：' }}{{ $tweet->title }} by {{ $tweet->user_name }}</summary>
+                                <br><p>{{ '問題：' }}{{ $tweet -> problem }}</p>
+                                <br><p>{{ '解決法：' }}{{ $tweet -> solution }}</p>
+                                <x-slot name="editdelete">
                             @if (\Illuminate\Support\Facades\Auth::id() === $tweet->user_id)
                                 <div>
                                     <a href="{{ route('tweet.update.index', ['tweetId'=>$tweet->id]) }}">編集</a>
@@ -81,10 +82,10 @@
                                     @csrf
                                     <button type="submit">削除</button>
                                 </form>
-                            @else
-                                編集できません
                             @endif
-                        </details>
+                                </x-slot>
+                                </details>
+                            </x-collection>
                     @endforeach
                 </div>
             </div>

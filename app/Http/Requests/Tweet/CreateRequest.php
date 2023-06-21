@@ -22,9 +22,18 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
             'problem' => 'required|max:140',
             'solution' => 'required|max:140'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'problem.required'  => '問題を入力してください。',
+            'problem.max'       => '問題は140字以内でお願いします。',
+            'solution.required'  => '解決法を入力してください。',
+            'solution.max'       => '解決法は140字以内でお願いします。',
         ];
     }
 

@@ -69,7 +69,9 @@
                     @foreach($tweets as $tweet)
                             <x-collection>
                                 <details>
-                                    <summary>{{ 'タイトル：' }}{{ $tweet->title }} by {{ $tweet->user_name }}</summary>
+                                    <summary>{{ 'タイトル：' }}{{ $tweet->title }} by {{ $tweet->user_name }}
+                                        <img class="w-20 h-20 mx-1 rounded-full" src="{{ asset('images/'.$tweet->fname)}}" alt="image">
+                                    </summary>
                                 <br><p>{{ '問題：' }}{{ $tweet -> problem }}</p>
                                 <br><p>{{ '解決法：' }}{{ $tweet -> solution }}</p>
                                 <x-slot name="editdelete">

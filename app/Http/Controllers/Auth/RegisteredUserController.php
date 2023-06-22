@@ -38,16 +38,6 @@ class RegisteredUserController extends Controller
             'user_id' => ['required', 'string', 'max:32'],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'user_id' => $request->user_id,
-            'fname' => $request->fname,
-            'bio' => $request->bio,
-            'admin' => $request->admin,
-        ]);
-
         // Logで$requestに入ってきている値を見る。logはstorage/logs/laravel.logにある
             // Log::debug($request);
             // Log::info($request);
@@ -58,9 +48,17 @@ class RegisteredUserController extends Controller
             $fileName = $file->getClientOriginalName(); // オリジナルのファイル名を取得する
             // アップロードされたファイルを指定のディレクトリに保存する
             $file->move('../storage/images', $fileName);
-    
-            $data['fname'] = $fileName;
         }
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'user_id' => $request->user_id,
+            'fname' => $fileName,
+            'bio' => $request->bio,
+            'admin' => $request->admin,
+        ]);
 
         event(new Registered($user));
 
